@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="ex5.3:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ex5_3_jar</output-path>
+    <root id="root">
+      <element id="archive" name="ex5.3.jar">
+        <element id="module-output" name="ex5.3" />
+      </element>
+    </root>
+  </artifact>
+</component>
