@@ -80,8 +80,47 @@
 > 
 > Lock简化了synchronized同步代码块和方法的繁琐操作。
 > 
-> 通常在类里面建立一个private的ReentrantLock对象，然后在需要同步的方法里面调用ReentrantLock对象的lock()和unlock()方法。（建议lock()...try{ } finally { unlock() }这样使用，保住锁的释放）
+> 通常在类里面建立一个private的ReentrantLock对象，然后在需要同步的方法里面调用ReentrantLock对象的lock()和unlock()方法。（建议lock()...try{ } finally { unlock() }这样使用，保证锁的释放）
 
+## wait()
+> 它是Object对象的方法，任何类都具有该方法。导致当前线程等待，直到其他线程notify()或notifyAll()唤醒该线程。
+> 
+> 简单方便，同步监视器对象就是this本身。
+> 
+> 调用方法：this.wait()。或传入指定毫秒数，在指定时间后自动唤醒。
 
+## notify()
+> 它是Object对象的方法，任何类都具有该方法。唤醒在此对象等待的线程，如果有多个等待的线程，则随机唤醒一个。
+> 
+> 和wait()配合使用
+> 
+> 直接调用
 
+## notifyAll()
+> 它是Object对象的方法，任何类都具有该方法。唤醒在此对象等待的所有线程。
+> 
+> 和wait()配合使用
+> 
+> 直接调用
+
+## await()
+> 它是Condition对象的方法，功能同Object对象的wait()方法类似。
+> 
+> 使用Lock类的时候需要用到Condition的该方法来实现Object的wait()方法类似的功能。
+> 
+> 和Lock配合使用。通常先设置private成员变量Condition，则:先通过lock.getCondition()获得Condition对象，再在lock()方法后面调用condition.await()来执行。
+
+## signal()
+> 它是Condition对象的方法，功能同Object对象的signal()方法类似。
+> 
+> 使用Lock类的时候需要用到Condition的该方法来实现Object的notify()方法类似的功能。
+> 
+> 和Lock配合使用。通常先设置private成员变量Condition，则:先通过lock.getCondition()获得Condition对象，再在lock()方法后面调用condition.signal()来执行。
+
+## signalAll()
+> 它是Condition对象的方法，功能同Object对象的notifyAll()方法类似。
+> 
+> 使用Lock类的时候需要用到Condition的该方法来实现Object的notifyAll()方法类似的功能。
+> 
+> 和Lock配合使用。通常先设置private成员变量Condition，则:先通过lock.getCondition()获得Condition对象，再在lock()方法后面调用condition.signalAll()来执行。
 
